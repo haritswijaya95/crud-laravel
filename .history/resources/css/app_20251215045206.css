@@ -1,0 +1,36 @@
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+    // 1. Jalur konten (files yang akan di-scan Tailwind untuk kelas)
+    content: [
+        // File Blade Laravel dari vendor (misalnya: Paginasi)
+        '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php',
+        // File Blade/PHP yang di-cache oleh Laravel
+        '../../storage/framework/views/*.php',
+        // File Blade lokal di folder resources/views (atau sejenisnya)
+        '../**/*.blade.php',
+        // File JavaScript lokal (jika Anda menggunakan kelas Tailwind di JS)
+        '../**/*.js',
+    ],
+
+    // 2. Konfigurasi tema
+    theme: {
+        extend: {
+            // Mengganti font-sans standar
+            fontFamily: {
+                sans: [
+                    'Instrument Sans',
+                    'ui-sans-serif',
+                    'system-ui',
+                    'sans-serif',
+                    'Apple Color Emoji',
+                    'Segoe UI Emoji',
+                    'Segoe UI Symbol',
+                    'Noto Color Emoji'
+                ],
+            },
+        },
+    },
+
+    // Bagian plugin (kosong jika tidak ada plugin tambahan)
+    plugins: [],
+}
