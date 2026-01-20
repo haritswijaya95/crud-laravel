@@ -1,5 +1,3 @@
-
-
 @extends('layouts.guest')
 
 @section('title', 'Lupa Kata Sandi')
@@ -11,7 +9,7 @@
 
     {{-- Status Sesi (Pesan Sukses) --}}
     @if (session('status'))
-        <div style="background-color: #d4edda; color: #155724; padding: 10px; border-radius: 5px; margin-bottom: 15px; text-align: center;">
+        <div style="background-color: #d4edda; color: #155724; padding: 10px; border-radius: 5px; margin-bottom: 15px; text-align: center; border: 1px solid #c3e6cb;">
             {{ session('status') }}
         </div>
     @endif
@@ -21,13 +19,23 @@
 
         <div class="form-group" style="margin-bottom: 15px;">
             <label for="email" style="display: block; margin-bottom: 5px;">Alamat Email</label>
-            <input id="email" type="email" name="email" value="{{ old('email') }}" required autofocus style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px;">
+            <input id="email" 
+                   type="email" 
+                   name="email" 
+                   value="{{ old('email') }}" 
+                   required 
+                   autofocus 
+                   style="width: 100%; padding: 10px; border: 1px solid {{ $errors->has('email') ? 'red' : '#ccc' }}; border-radius: 4px; box-sizing: border-box;">
+            
             @error('email')
-                <span class="error-message" style="color: red; font-size: 0.85em; display: block; mt-1">{{ $message }}</span>
+                {{-- Perbaikan: mt-1 dipindah ke style margin-top --}}
+                <span class="error-message" style="color: red; font-size: 0.85em; display: block; margin-top: 5px;">
+                    {{ $message }}
+                </span>
             @enderror
         </div>
 
-        <button type="submit" class="btn-primary" style="width: 100%; padding: 10px; background-color: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer;">
+        <button type="submit" class="btn-primary" style="width: 100%; padding: 10px; background-color: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold;">
             Kirim Tautan Reset
         </button>
         
