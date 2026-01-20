@@ -1,5 +1,3 @@
-// resources/views/auth/login.blade.php
-
 @extends('layouts.guest')
 
 @section('title', 'Masuk ke Akun Anda')
