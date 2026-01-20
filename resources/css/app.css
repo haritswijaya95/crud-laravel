@@ -1,5 +1,26 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* 1. Import Tailwind CSS (Cara v4) */
+@import "tailwindcss";
 
-/* Tambahkan custom CSS Anda di bawah ini jika ada */
+/* 2. Custom CSS dengan @layer */
+@layer components {
+    /* Membuat class tombol custom */
+    .btn-utama {
+        @apply px-6 py-2 bg-blue-600 text-white rounded shadow-md;
+        transition: all 0.3s ease;
+    }
+
+    .btn-utama:hover {
+        @apply bg-blue-700 shadow-lg;
+        transform: translateY(-2px);
+    }
+
+    /* Perbaikan: Menambahkan dot (.) agar menjadi class dan memindahkannya ke dalam layer */
+    .my-custom-class {
+        @apply px-6 py-4 bg-blue-500;
+    }
+}
+
+/* 3. CSS Murni (Standard CSS) */
+.background-khusus {
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+}
