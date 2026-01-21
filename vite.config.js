@@ -11,6 +11,9 @@ export default defineConfig({
         tailwindcss(),
     ],
     build: {
-        outDir: 'public/build', // Ini folder yang dicari Laravel
+        // Laravel secara default menggunakan public/build
+        // Pastikan ini sesuai dengan folder yang akan di-deploy
+        outDir: 'public/build',
+        emptyOutDir: true
     }
 });
