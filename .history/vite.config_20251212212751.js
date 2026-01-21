@@ -10,7 +10,4 @@ export default defineConfig({
         }),
         tailwindcss(),
     ],
-    build: {
-        outDir: 'public/build', // Ini folder yang dicari Laravel
-    }
 });
