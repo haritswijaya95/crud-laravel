@@ -12,7 +12,7 @@
     },
     {
       "src": "/(.*)",
-      "dest": "/api/index.balade.php"
+      "dest": "/api/index.php"
     }
   ]
 }
