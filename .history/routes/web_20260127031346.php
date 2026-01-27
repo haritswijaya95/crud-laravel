@@ -20,21 +20,23 @@ Route::get('/', function () {
 
 /*
 |--------------------------------------------------------------------------
-| Guest Routes (Hanya untuk yang BELUM login)
+| Guest Routes (Hanya bisa diakses jika BELUM login)
 |--------------------------------------------------------------------------
 */
-Route::middleware(['guest'])->group(function () {
+Route::middleware(['auth'])->group(function () {
     // Login
     Route::get('/login', function () { return view('auth.login'); })->name('login');
-    Route::post('/login', [AuthenticatedSessionController::class, 'store']); // Tambahkan store login
+    Route::get('/dashboard', [HomeController::class, 'index']);
 
     // Register
     Route::get('/register', function () { return view('auth.register'); })->name('register');
     Route::post('/register', [RegisteredUserController::class, 'store']);
 
-    // Forgot/Reset Password
+    // Forgot Password
     Route::get('/forgot-password', function () { return view('auth.forgot-password'); })->name('password.request');
     Route::post('/forgot-password', [PasswordResetLinkController::class, 'store'])->name('password.email');
+    
+    // Reset Password
     Route::get('/reset-password/{token}', function ($token) { 
         return view('auth.reset-password', ['token' => $token]); 
     })->name('password.reset');
@@ -43,17 +45,18 @@ Route::middleware(['guest'])->group(function () {
 
 /*
 |--------------------------------------------------------------------------
-| Authenticated Routes (Hanya untuk yang SUDAH login)
+| Authenticated Routes (Hanya bisa diakses jika SUDAH login)
 |--------------------------------------------------------------------------
 */
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth', 'verified'])->group(function () {
     
     // Dashboard
     Route::get('/dashboard', function () {
         return view('pages.dashboard');
     })->name('dashboard');
 
-    // CRUD Produk
+    // CRUD Produk - Menggunakan Resource agar lebih bersih
+    // Ini otomatis mencakup index, create, store, edit, update, destroy, show
     Route::resource('produk', ProdukController::class);
 
     // Logout
