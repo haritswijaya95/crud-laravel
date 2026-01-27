@@ -23,11 +23,4 @@ class RedirectIfAuthenticated
 
         return $next($request);
     }
-
-    protected function redirectTo(Request $request): ?string
-{
-    // Jika request meminta JSON, jangan kirim pesan teks, tapi biarkan null
-    // Jika tidak, arahkan ke halaman login
-    return $request->expectsJson() ? null : route('login');
-}
 }
