@@ -1,5 +1,4 @@
 <?php
-die("Berhasil masuk ke Public Index!");
 
 use Illuminate\Foundation\Application;
 use Illuminate\Http\Request;
