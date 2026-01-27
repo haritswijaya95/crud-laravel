@@ -12,10 +12,8 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
-        // Ini kunci agar tidak muncul tulisan "Authenticated" terus-menerus
-        $middleware->trustProxies(at: '*');
-        
-        // Memastikan jika belum login, dilempar ke rute 'login' di web.php
+        // Ini akan memastikan Laravel tidak memaksa respon JSON "Authenticated" 
+        // saat kamu mengakses halaman web biasa
         $middleware->redirectGuestsTo(fn () => route('login'));
     })
     ->withExceptions(function (Exceptions $exceptions) {

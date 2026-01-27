@@ -14,8 +14,8 @@ use App\Http\Controllers\Auth\NewPasswordController;
 | Public Routes
 |--------------------------------------------------------------------------
 */
-Route::get('/test', function () {
-    return response()->json(['message' => 'API OK']);
+Route::get('/', function () {
+    return "Laravel berhasil berjalan di Vercel!";
 });
 
 /*
