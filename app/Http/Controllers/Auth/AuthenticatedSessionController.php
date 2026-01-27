@@ -28,6 +28,6 @@ class RedirectIfAuthenticated
 {
     // Jika request meminta JSON, jangan kirim pesan teks, tapi biarkan null
     // Jika tidak, arahkan ke halaman login
-    return $request->expectsJson() ? null : route('login');
+    return route('login');
 }
 }
