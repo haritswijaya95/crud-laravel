@@ -14,8 +14,8 @@ use App\Http\Controllers\Auth\NewPasswordController;
 | Public Routes
 |--------------------------------------------------------------------------
 */
-Route::get('/', function () { 
-    return view('pages.welcome'); 
+Route::get('/', function () {
+    return "Laravel berhasil berjalan di Vercel!";
 });
 
 /*
@@ -23,10 +23,10 @@ Route::get('/', function () {
 | Guest Routes (Hanya bisa diakses jika BELUM login)
 |--------------------------------------------------------------------------
 */
-Route::middleware('guest')->group(function () {
+Route::middleware(['auth'])->group(function () {
     // Login
     Route::get('/login', function () { return view('auth.login'); })->name('login');
-    Route::post('/login', [AuthenticatedSessionController::class, 'store']);
+    Route::get('/dashboard', [HomeController::class, 'index']);
 
     // Register
     Route::get('/register', function () { return view('auth.register'); })->name('register');
