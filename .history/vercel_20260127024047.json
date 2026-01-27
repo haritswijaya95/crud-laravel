@@ -12,8 +12,7 @@
         },
         {
             "src": "/(.*)",
-            "dest": "/api/index.php",
-            "check": true
+            "dest": "/api/index.php"
         }
     ]
 }
