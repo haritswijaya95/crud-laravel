@@ -10,7 +10,7 @@ class AppServiceProvider extends ServiceProvider
 
 // app/Providers/RouteServiceProvider.php
 
-    public const HOME = '/'; // Ubah dari /dashboard ke /produk
+    public const HOME = '/produk'; // Ubah dari /dashboard ke /produk
     /**
      * Register any application services.
      */
