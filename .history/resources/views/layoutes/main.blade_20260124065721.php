@@ -1,14 +1,14 @@
-<!DOCTYPE html>
+<!DOCTYPE html> <html lang="id">
 <html lang="en">
     <head>
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
-        <meta name="author" content="" />
+        <meta name="author" content="" /> 
         <title>Dashboard - SB Admin</title>
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
-        <link href="css/styles.css" rel="stylesheet" />
+        <link href="/css/styles.css" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
     </head>
     <body class="sb-nav-fixed">
@@ -43,7 +43,7 @@
                     <div class="sb-sidenav-menu">
                         <div class="nav">
                             <div class="sb-sidenav-menu-heading">Core</div>
-                            <a class="nav-link" href="{{route ('index.index') }}">
+                            <a class="nav-link" href="index.html">
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 Dashboard
                             </a>
@@ -107,105 +107,34 @@
                     </div>
                 </nav>
             </div>
-            <div id="layoutSidenav_content">
-               <main>
-   @extends('layoutes.main')
-
-@section('content')
-<div class="container-fluid px-4">
-    <h1 class="mt-4">Dashboard</h1>
-    <ol class="breadcrumb mb-4">
-        <li class="breadcrumb-item active">Dashboard</li>
-    </ol>
-    <div class="card mb-4">
-        <div class="card-header">
-            <a href="{{ route('produk.create') }}" class="btn btn-sm btn-primary">Tambah Produk</a>
-
-            DataTable Example                                                      
-        </div>
-        <div class="card-body">
-            <table id="datatablesSimple">
-                <thead>                                       
-                    <tr>                                                        
-                        <th>No</th>    
-                        <th>Nama</th>                               
-                        <th>Jenis</th>
-                        <th>Harga Jual</th>
-                        <th>Harga Beli</th>
-                        <th>Foto</th>
-                        <th width="280px">Action</th>
-                    </tr>
-                </thead>
-                <tfoot>
-                    <tr>
-                        <th>No</th>
-                        <th>Nama</th>
-                        <th>Jenis</th>
-                        <th>Harga Jual</th>
-                        <th>Harga Beli</th>
-                        <th>Foto</th>
-                        <th>Action</th>
-                    </tr>
-                </tfoot>
-                <tbody>
-                    {{-- **Ensure $produk is passed from the controller** --}}
-                    @foreach ($produk as $k)
-                    <tr>
-                        <td>{{ $loop->iteration }}</td>
-                        <td>{{ $k->nama }}</td>
-                        <td>{{ $k->jenis }}</td>
-                        <td>{{ $k->harga_jual }}</td>
-                        <td>{{ $k->harga_beli }}</td>
-                        <td>
-                            {{-- Menggunakan asset() untuk path publik, asumsi file ada di storage/app/public/img --}}
-                            <img src="{{ asset('storage/img/' . $k->foto) }}" alt="Foto Produk" width="50">
-                        </td>
-                        <td>
-                            <form action="{{ route('produk.destroy', $k->id) }}" method="POST">
-                                <a href="{{ route('index.edit', $k->id) }}" class="btn btn-sm btn-warning">edit</a>
-                                <a class="btn btn-info btn-sm" href="{{ route('produk.show', $k->id) }}">Show</a>
-
-                                @csrf
-                                @method('DELETE')
-                               <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal{{$k->id}}">
-Hapus
-</button>
  
-<!-- Modal -->
-<div class="modal fade" id="exampleModal{{$k->id}}" tabindex="-1" aria-labelledby="exampleModalLabel"
-  aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Hapus Produk</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        Apakah anda yakin akan menghapus data {{$k->nama}}
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-
-        <form action="{{ route('index.destroy', $k->id) }}" method="POST" style="display:inline;">
-          @csrf
-          @method('DELETE')
-          <button type="submit" class="btn btn-danger">Delete</button>
-        </form>
-
-      </div>
-    </div>
-  </div>
-</div>
-
-                          </form>
-                        </td>
-                    </tr>
-                    @endforeach
-                </tbody>
-            </table>
+            <div id="layoutSidenav_content">
+                <main>
+ 
+                    @yield('content')
+ 
+                </main>
+ 
+                <footer class="py-4 bg-light mt-auto">
+                    <div class="container-fluid px-4">
+                        <div class="d-flex align-items-center justify-content-between small">
+                            <div class="text-muted">Copyright &copy; Your Website 2023</div>
+                            <div>
+                                <a href="#">Privacy Policy</a>
+                                &middot;
+                                <a href="#">Terms &amp; Conditions</a>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+            </div>
         </div>
-    </div>
-</div>
-@endsection
-</main>
-  </html>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+        <script src="/js/scripts.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+        <script src="/assets/demo/chart-area-demo.js"></script>
+        <script src="/assets/demo/chart-bar-demo.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
+        <script src="/js/datatables-simple-demo.js"></script>
+    </body>
+</html>
